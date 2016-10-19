@@ -69,6 +69,7 @@ def classify(finename):
     source = im.split()
     grey_path = source[0]
     grey_px = grey_path.load()
+    # pillow保存图片为列行的顺序，所以在加载回来时要调换位置
     grey_list = [grey_px[j, i] for i in range(pic_size[0]) for j in range(pic_size[1])]
     na = np.array(grey_list)
     ix = np.multiply(na, 1.0 / 255.0)

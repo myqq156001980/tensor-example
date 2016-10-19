@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import tensorflow as tf
 from PIL import Image
 import numpy as np
@@ -25,9 +26,9 @@ def max_pool_2x2(poolx):
 sess = tf.Session()
 x = tf.placeholder("float", shape=[None, 784])
 
+# 由于在训练保存时保存了下面三个参数虽然没有用到但是不写恢复参数时候会报错
 y_ = tf.placeholder("float", shape=[None, 10])
-
-W = tf.Variable(tf.zeros([784,10]))
+W = tf.Variable(tf.zeros([784, 10]))
 b = tf.Variable(tf.zeros([10]))
 
 W_conv1 = weight_variable([5, 5, 1, 32])
@@ -71,7 +72,7 @@ def classify(finename):
     grey_list = [grey_px[j, i] for i in range(pic_size[0]) for j in range(pic_size[1])]
     na = np.array(grey_list)
     ix = np.multiply(na, 1.0 / 255.0)
-    ix = ix.reshape(-1,784)
+    ix = ix.reshape(-1, 784)
     result = tf.argmax(y_conv, 1)
     index = sess.run(result, feed_dict={x: ix, keep_prob: 1.0})
     print ("The image is number: {num} ".format(num=index[0]))

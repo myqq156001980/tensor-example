@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from PIL import Image
 import struct
+
 """
 将MNIST数据转换为图片格式
 """
+
 
 def read_image(filename, path):
     f = open(filename, 'rb')
